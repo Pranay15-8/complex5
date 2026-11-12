@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -7,14 +8,22 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Syntax Check') {
+
+        stage('Python Version') {
             steps {
-                bat 'python -m py_compile app.py'
+                bat '"C:\\Users\\prana\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" --version'
             }
         }
+
+        stage('Syntax Check') {
+            steps {
+                bat '"C:\\Users\\prana\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" -m py_compile app.py'
+            }
+        }
+
         stage('Run Application') {
             steps {
-                bat 'python app.py'
+                bat '"C:\\Users\\prana\\AppData\\Local\\Programs\\Python\\Python310\\python.exe" app.py'
             }
         }
     }
